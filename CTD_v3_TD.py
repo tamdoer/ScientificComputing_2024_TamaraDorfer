@@ -36,8 +36,25 @@ for line in file:
 
 quit()
 
+#another way
+done_w_header = False
+line_counter = 1
 
-df = pd.read_csv(path_to_data / 'met_181_1_055.ctd', sep=',')
+for line in file:
+    if line.startswith('Columns ='):
+        done_w_header = True
+    if done_w_header == False:
+        line_counter = line_counter + 1
+    print(done_w_header, line_counter)
+
+
+df = pd.read_csv(filename, skiprows= line_counter, sep='/s+')
+
+#redefining the column names
+print(df)
+df.columns = [blablabla]
+
+print(df.columns)
 
 #print(df)
 print(df.columns)
@@ -45,4 +62,4 @@ print(df.columns)
 plt.scatter(df['o'], df['z']*-1)
 
 #plt.show()
-plt.savefig(path_to_plots / "Depth_vs_o2_v2.pdf")
+plt.savefig(path_to_plots / "Depth_vs_o2_FILENAME_v3.pdf")
