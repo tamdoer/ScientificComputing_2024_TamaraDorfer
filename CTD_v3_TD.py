@@ -12,9 +12,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+
 #to get a file, access it from ScientificComputing_2024
 #when Rainer updates something we have to PULL first!
-path_to_data = Path("~/GIT/ScientificComputing_2024/Data")
+path_to_data = Path("~/GIT/ScientificComputing_2024/Data/met_181_1_ctd_rel3")
 path_to_data = path_to_data.expanduser()
 
 path_to_plots = Path("~/GIT/ScientificComputing_2024/Plots")
@@ -31,21 +32,29 @@ filename = path_to_data / 'met_181_1_055.ctd'
 
 file = open(filename, 'r')
 
-for line in file:
-    print(line)
-
-quit()
 
 #another way
 done_w_header = False
-line_counter = 1
+line_counter = 0
+header_line_counter = None
 
+# reopen the file object before each loop
 for line in file:
-    if line.startswith('Columns ='):
-        done_w_header = True
-    if done_w_header == False:
-        line_counter = line_counter + 1
-    print(done_w_header, line_counter)
+    #print(line)
+    line_counter = line_counter + 1
+    print(line_counter) #print is basically just to check what the status of a project is!
+    if line.startswith('Columns  ='):
+        print(line)
+        header_line_counter = line_counter
+print(line_counter, header_line_counter)
+
+quit()
+#for line in file:
+ #   if line.startswith('Columns ='):
+  #      done_w_header = True
+   # if done_w_header == False:
+    #    line_counter = line_counter + 1
+    #print(done_w_header, line_counter)
 
 
 df = pd.read_csv(filename, skiprows= line_counter, sep='/s+')
