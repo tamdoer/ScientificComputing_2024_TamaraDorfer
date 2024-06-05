@@ -5,13 +5,13 @@ import glob
 import os
 
 
-path_to_data = Path("~/GIT/ScientificComputing_2024_TamaraDorfer/Data/met_181_1_ctd_rel3")
+path_to_data = Path("/Data/met_181_1_ctd_rel3")
 path_to_data = path_to_data.expanduser()
 
-path_to_plots = Path("~/GIT/ScientificComputing_2024_TamaraDorfer/Plots")
+path_to_plots = Path("/Plots")
 path_to_plots = path_to_plots.expanduser()
 
-search_dir = path_to_data
+search_dir = path_to_data #lines 14 - 22 from Aude
 os.chdir(search_dir) # chose directory for the following commands
 pattern = '*.ctd'
 matched_files = glob.glob(pattern)
@@ -39,5 +39,4 @@ for station in matched_files:
         plot_name = "Depth_vs_o_" + station + "_v3.pdf"
         plt.savefig(path_to_plots / plot_name)
         plt.close()
-
-print(station)
+quit()
