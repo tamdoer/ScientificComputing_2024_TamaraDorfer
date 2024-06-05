@@ -14,7 +14,7 @@ path_to_plots = path_to_plots.expanduser()
 try:
     os.mkdir(path_to_plots) # only works for running the first time because after that, the directory already exists
 except FileExistsError:
-    print("Folder already exists")
+    print("Folder already exists!") # you can also say pass if you want nothing to happen
 print(str(path_to_data))
 
 # gather file list from directory
